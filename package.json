@@ -10,7 +10,7 @@
   "author": "Min Zhang",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^3.3.7",
+    "axios": "^0.17.1",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1"
   },

@@ -1,6 +1,7 @@
 /* global $ */
-export default class Main {
+export default class Canvas {
   constructor() {
+    this.inputs = [];
     this.canvas = document.getElementById('main');
     this.input = document.getElementById('input');
     this.canvas.width = 449; // 16 * 28 + 1
@@ -30,7 +31,7 @@ export default class Main {
       this.ctx.closePath();
       this.ctx.stroke();
     }
-    //this.drawInput();
+    this.drawInput();
     //$('#output td').text('').removeClass('success');
   }
   onMouseDown(e) {
@@ -66,64 +67,21 @@ export default class Main {
     var ctx = this.input.getContext('2d');
     var img = new Image();
     img.onload = () => {
-      var inputs = [];
       var small = document.createElement('canvas').getContext('2d');
       small.drawImage(img, 0, 0, img.width, img.height, 0, 0, 28, 28);
       var data = small.getImageData(0, 0, 28, 28).data;
       for (var i = 0; i < 28; i++) {
         for (var j = 0; j < 28; j++) {
           var n = 4 * (i * 28 + j);
-          inputs[i * 28 + j] = (data[n + 0] + data[n + 1] + data[n + 2]) / 3;
+          this.inputs[i * 28 + j] = (data[n + 0] + data[n + 1] + data[n + 2]) / 3;
           ctx.fillStyle = 'rgb(' + [data[n + 0], data[n + 1], data[n + 2]].join(',') + ')';
           ctx.fillRect(j * 5, i * 5, 5, 5);
         }
       }
-      if (Math.min(...inputs) === 255) {
+      if (Math.min(...this.inputs) === 255) {
         return;
       }
-      // $.ajax({
-      //   url: '/api/mnist',
-      //   method: 'POST',
-      //   contentType: 'application/json',
-      //   data: JSON.stringify(inputs),
-      //   success: (data) => {
-      //     for (let i = 0; i < 2; i++) {
-      //       var max = 0;
-      //       var max_index = 0;
-      //       for (let j = 0; j < 10; j++) {
-      //         var value = Math.round(data.results[i][j] * 1000);
-      //         if (value > max) {
-      //           max = value;
-      //           max_index = j;
-      //         }
-      //         var digits = String(value).length;
-      //         for (var k = 0; k < 3 - digits; k++) {
-      //           value = '0' + value;
-      //         }
-      //         var text = '0.' + value;
-      //         if (value > 999) {
-      //           text = '1.000';
-      //         }
-      //         $('#output tr').eq(j + 1).find('td').eq(i).text(text);
-      //       }
-      //       for (let j = 0; j < 10; j++) {
-      //         if (j === max_index) {
-      //           $('#output tr').eq(j + 1).find('td').eq(i).addClass('success');
-      //         } else {
-      //           $('#output tr').eq(j + 1).find('td').eq(i).removeClass('success');
-      //         }
-      //       }
-      //     }
-      //   }
-      // });
     };
     img.src = this.canvas.toDataURL();
   }
 }
-
-// $(() => {
-//   var main = new Main();
-//   $('#clear').click(() => {
-//     main.initialize();
-//   });
-// });
