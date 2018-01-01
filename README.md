@@ -8,6 +8,7 @@
 # 运行环境
 - node8
 - python3
+
 确保全局安装 `parcel-bundler`，如果没安装请运行 `npm install -g parcel-bundler`；确保安装 python3 以及 tensorflow、flask、flask_cors、numpy 模块，python 模块可以通过 pip install 安装。windows 安装python 推荐安装 Anaconda。
 
 # 本地配置
