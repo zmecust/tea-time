@@ -32,7 +32,6 @@ export default class Canvas {
       this.ctx.stroke();
     }
     this.drawInput();
-    //$('#output td').text('').removeClass('success');
   }
   onMouseDown(e) {
     this.canvas.style.cursor = 'default';

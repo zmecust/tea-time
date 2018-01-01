@@ -28,11 +28,11 @@
               <td>{{ feedForward[index] }}</td>
               <td>{{ convolution[index] }}</td>
             </tr>
-            <!-- <tr>
+            <tr>
               <td>results</td>
               <td><span>{{ results[0] }}</span></td>
               <td><span>{{ results[1] }}</span></td>
-            </tr> -->
+            </tr>
           </tbody>
         </table>
         <div class="line"></div>
@@ -68,8 +68,8 @@ export default {
         .then(res => {
           this.feedForward = this.transformer(res.data.results[0]);
           this.convolution = this.transformer(res.data.results[1]);
-          this.results[0] = this.feedForward.indexOf(String(Math.max.apply(null, this.feedForward)))
-          this.results[1] = this.convolution.indexOf(String(Math.max.apply(null, this.convolution)))
+          this.results[0] = this.feedForward.indexOf(Math.max.apply(null, this.feedForward))
+          this.results[1] = this.convolution.indexOf(Math.max.apply(null, this.convolution))
         })
         .catch(function(error) {
           console.log(error);
@@ -84,7 +84,7 @@ export default {
     },
     transformer(data) {
       return data.map((item) => {
-        return item.toFixed(8);
+        return + item.toFixed(8);
       })
     }
   }
