@@ -42,4 +42,4 @@ def recognition():
     return jsonify(results=[output1, output2])
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
