@@ -42,10 +42,10 @@
 </template>
 
 <script>
-import Canvas from "./canvas";
-import axios from "axios";
+import Canvas from '../canvas';
+import axios from 'axios';
+import * as config from '../../config';
 let canvas = Object;
-const root = "http://localhost:5000";
 
 export default {
   data() {
@@ -64,7 +64,7 @@ export default {
     submit() {
       this.inputs = canvas.inputs;
       axios
-        .post(`${root}/recognition`, this.inputs)
+        .post(`${config.API_ROOT}/recognition`, this.inputs)
         .then(res => {
           this.feedForward = this.transformer(res.data.results[0]);
           this.convolution = this.transformer(res.data.results[1]);

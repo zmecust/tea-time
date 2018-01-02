@@ -1,6 +1,7 @@
 import Vue from 'vue/dist/vue.js'
 import Router from 'vue-router'
-import MainPage from '../MainPage.vue';
+import Main from '../view/Main.vue';
+import DigitRecognition from '../view/DigitRecognition.vue';
 
 Vue.use(Router)
 
@@ -9,7 +10,11 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      component: MainPage
+      component: Main
+    },
+    {
+      path: '/digit_recognition',
+      component: DigitRecognition
     }
   ]
 })
