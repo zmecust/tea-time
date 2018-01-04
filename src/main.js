@@ -4,11 +4,9 @@ import router from './router/index'
 
 Vue.config.productionTip = false
 
-window.onload = function() {
-  new Vue({
-    el: '#app',
-    router,
-    template: '<App/>',
-    components: { App }
-  })
-}
+new Vue({
+  el: '#app',
+  router,
+  template: '<App/>',
+  components: { App }
+})

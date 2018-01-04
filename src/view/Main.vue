@@ -10,7 +10,8 @@
     </div>
     <div class="footer">
       <div style="text-align: center">
-        <span style="color: #aaa;">Developed By </span><span><a style="color: #aaa; font-size: 14px; font-weight: bold" href="https://github.com/zmecust">Min Zhang</a></span>
+        <span style="color: #aaa">Developed By </span>
+        <span><a href="https://github.com/zmecust">Min Zhang</a></span>
       </div>
     </div>
   </div>
@@ -22,28 +23,24 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .main {
   text-align: center;
   margin-top: 15%;
-}
-
-h5 {
-  color: #aaa
-}
-
-p {
-  padding-top: 3%;
-}
-
-a {
-  color: #00b5ad;
-  font-weight: normal;
-  font-size: 18px;
-}
-
-a:hover, a:active {
-  color: tomato;
+  h5 {
+    color: #aaa
+  }
+  p {
+    padding-top: 3%;
+    a {
+      color: #00b5ad;
+      font-weight: normal;
+      font-size: 18px;
+      &:hover, &:active {
+        color: tomato;
+      }
+    }
+  }
 }
 
 .footer {
@@ -51,5 +48,10 @@ a:hover, a:active {
   top: 95%;
   left: 0;
   width: 100%;
+  a {
+    color: #aaa;
+    font-size: 14px;
+    font-weight: bold
+  }
 }
 </style>
