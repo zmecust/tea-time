@@ -5,6 +5,8 @@
       <h5>Tea Time</h5>
       <p>
         <router-link to="/digit_recognition">手写数字识别</router-link><br>
+        <a href="https://webrtc.laravue.org/#/">一对一视频通话</a><br>
+        <a href="https://mutilwebrtc.laravue.org/#/">多人视频通话</a><br>
         <router-link to="#" style="text-decoration: line-through;">上传图片检测性别</router-link>
       </p>
     </div>
