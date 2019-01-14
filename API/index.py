@@ -4,6 +4,7 @@ import numpy as np
 import tensorflow as tf
 
 from mnist import model
+import saveSample
 
 
 x = tf.placeholder("float", [None, 784])
@@ -40,6 +41,11 @@ def recognition():
     output1 = regression(input)
     output2 = convolutional(input)
     return jsonify(results=[output1, output2])
+
+@app.route('/feedback', methods=['POST'])
+def feedback():
+    saveSample.save(request.json.image, request.json.label)
+    return jsonify(results='we got the feedback, thanks!')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

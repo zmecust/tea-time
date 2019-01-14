@@ -7,8 +7,8 @@
       <div class="col-md-6 col-xs-12">
         <canvas id="main"></canvas>
         <div>
-          <button class="btn btn-success" @click="submit">识别</button>
-          <button class="btn btn-success" @click="clear">清除</button>
+          <button class="btn btn-info" @click="submit">识别</button>
+          <button class="btn btn-default" @click="clear">清除</button>
         </div>
       </div>
       <div class="col-md-6 col-xs-12">
@@ -38,6 +38,20 @@
         <div class="line"></div>
       </div>
     </div>
+    <div class="row feed_back">
+      <div class="col-md-5 col-xs-12">
+        <div>
+          <h5>请给我们反馈，以便改进模型，提高准确率...</h5>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="您写入的数字是什么？" v-model="currentNumber">
+            <span class="input-group-btn">
+              <button class="btn btn-default" @click="feedback">反馈</button>
+            </span>
+          </div>
+          <div class="alert alert-info" role="alert" v-show="this.inputs.length > 0 && showInfo">谢谢您的反馈，我们已收到</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -54,7 +68,9 @@ export default {
       inputs: [],
       feedForward: [],
       convolution: [],
-      results: []
+      results: [],
+      currentNumber: '',
+      showInfo: false
     };
   },
   mounted() {
@@ -83,9 +99,24 @@ export default {
       this.results = []
     },
     transformer(data) {
-      return data.map((item) => {
+      return data.map(item => {
         return + item.toFixed(8);
       })
+    },
+    feedback() {
+      this.currentNumber = '';
+      this.showInfo = true;
+
+      axios
+        .post(`${config.API_ROOT}/feedback`, { image: this.inputs, label: this.currentNumber })
+        .then(res => {})
+        .catch(function(error) {
+          console.log(error);
+        });
+
+      setTimeout(() => {
+        this.showInfo = false;
+      }, 3000);
     }
   }
 };
@@ -109,5 +140,9 @@ p {
 span {
   color: red;
   font-weight: bold;
+}
+
+.feed_back {
+  margin-top: 20px;
 }
 </style>

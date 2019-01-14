@@ -3,7 +3,7 @@ import model
 import tensorflow as tf
 
 from tensorflow.examples.tutorials.mnist import input_data
-data = input_data.read_data_sets("/tmp/data/", one_hot=True)
+data = input_data.read_data_sets("../tmp/data/", one_hot=True)
 
 # model
 with tf.variable_scope("convolutional"):
