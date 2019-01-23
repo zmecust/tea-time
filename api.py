@@ -4,7 +4,6 @@ import numpy as np
 import tensorflow as tf
 
 from mnist import model
-import saveSample
 
 
 x = tf.placeholder("float", [None, 784])
@@ -44,7 +43,7 @@ def recognition():
 
 @app.route('/feedback', methods=['POST'])
 def feedback():
-    saveSample.save(request.json.image, request.json.label)
+    # saveSample.save(request.json.image, request.json.label)
     return jsonify(results='we got the feedback, thanks!')
 
 if __name__ == '__main__':
